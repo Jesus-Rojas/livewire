@@ -1,10 +1,19 @@
 <div>
-    <input type="text" wire:model="name">
-    
-    Hello {{ $name }}
+    @foreach ($users as $user)
+        <div>
+            @livewire('say-hi', ['user' => $user], key($user->id))
+            <br>
+            <button wire:click="removeUser({{ $user->id }})">Remove</button>
+        </div>
+    @endforeach
 
-    <br>
+    <hr>
 
-    Custom: {{ json_encode($hooksCustom) }}
+    {{ now() }}
 
+    <button wire:click="$refresh">Refresh</button>
+
+    <hr>
+
+    Test Eloquent: {{ json_encode($customEloquent) }}
 </div>

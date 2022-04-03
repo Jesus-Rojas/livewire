@@ -2,40 +2,32 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use Livewire\Component;
 
 class HelloWorld extends Component
 {
-    public $name = 'Rojas';
-    public $hooksCustom = [];
+    public $names = ['Rojas', 'Jesus'];
+    public $users;
+    public $customEloquent;
+    
+    public function mount()
+    {
+        $this->customEloquent = User::whereEstadoUser(0)->first();
+        $this->users = User::all();
+    }
 
     public function render()
     {
-        array_push($this->hooksCustom, 'render');
         return view('livewire.hello-world');
     }
 
-    public function mount($name)
-    // public function mount(Request $request, $name)
+    public function removeUser($id)
     {
-        array_push($this->hooksCustom, 'mount');
-        $this->name = $name;
-        // $this->name = $request->input('name', $name);
-    }
-
-    public function updatedName($name) // esta funcion va deacuerdo a la propiedad publica
-    // public function updated($name)
-    // public function updated()
-    {
-        $this->name = strtoupper($name);
-        // $this->name = 'updated';
-        array_push($this->hooksCustom, 'updated');
-    }
-
-    public function hydrate()
-    {
-        array_push($this->hooksCustom, 'hydrated');
-        $this->name = 'hydrated';
+        $user = User::findOrFail($id);
+        if ($user) {
+            $user->delete();
+            $this->users = User::all();
+        }
     }
 }
