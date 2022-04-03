@@ -6,5 +6,13 @@
         <option>Good Bye</option>
         <option>See you</option>
     </select>
+
     {{ implode(', ', $greeting) }} {{ $name }} @if($loud) ! @endif
+
+    <form action="#" wire:submit.prevent="$set('name', 'Bingo')">
+        {{-- <form action="#" wire:submit.prevent="resetName(Rojas)"> --}}
+        <button>Reset Name</button>
+        {{-- <button wire:click="resetName($event.target.innerText)">Reset Name</button> --}}
+    </form>
+
 </div>

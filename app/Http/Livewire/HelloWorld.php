@@ -16,4 +16,9 @@ class HelloWorld extends Component
             'name' => 'Jesus'
         ]);
     }
+
+    public function resetName($name = '')
+    {
+        $this->name = $name;
+    }
 }
