@@ -1,20 +1,28 @@
 <div class="p-4 mx-auto max-w-md space-y-4">
   <div class="space-y-4">
     <h1>Forms and Submit Buttons</h1>
-    <form action="/articles/create" method="POST" >
+    <label>
+      Title
+      <input type="text" wire:model="title" name="title">
+    </label>
+    <button class="mt-4" type="button" wire:click="createArticle">Create Article</button>
+
+    {{-- <form wire:submit.prevent="createArticle">
       <label>
         Title
-        <input type="text" name="title">
+        <input type="text" wire:model="title" name="title">
       </label>
       <button class="mt-4" type="submit">Create Article</button>
-      </form>
+    </form> --}}
   </div>
 
   <div class="space-y-4">
     <h1>Action Buttons</h1>
-    <form action="/file/download" method="POST">
+    <button type="button" wire:click="downloadFile">Download File</button>
+
+    {{-- <form  wire:submit.prevent="downloadFile">
       @csrf
       <button type="submit">Download File</button>
-      </form>
+    </form> --}}
   </div>
 </div>
