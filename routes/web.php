@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Forms\FormsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,8 @@ Route::get('/', function () {
 
 // livewire 2
 Route::view('/register', 'register');
+
+Route::view('/form', 'pages.form');
+
+Route::post('arcticles/create', [FormsController::class, 'createArticle']);
+Route::post('file/download', [FormsController::class, 'downloadFile']);
