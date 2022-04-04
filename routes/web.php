@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// livewire 1
+// Route::livewire('/register', 'register')->layout('layouts.app');
+
+// livewire 2
+Route::view('/register', 'register');
