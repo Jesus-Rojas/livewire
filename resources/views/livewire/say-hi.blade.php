@@ -3,5 +3,7 @@
 
     Hello {{ $user->name }} {{ now() }}
 
-    <button wire:click="$refresh">Refresh</button>
+    <button wire:click="$emitUp('foo')">Refresh</button>
+    {{-- <button wire:click="$emit('foo')">Refresh</button> --}}
+    {{-- <button wire:click="$refresh">Refresh</button> --}}
 </div>

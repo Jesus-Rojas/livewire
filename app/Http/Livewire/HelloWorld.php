@@ -7,13 +7,12 @@ use Livewire\Component;
 
 class HelloWorld extends Component
 {
-    public $names = ['Rojas', 'Jesus'];
     public $users;
-    public $customEloquent;
     
+    protected $listeners = ['foo' => '$refresh'];
+
     public function mount()
     {
-        $this->customEloquent = User::whereEstadoUser(0)->first();
         $this->users = User::all();
     }
 
@@ -22,12 +21,9 @@ class HelloWorld extends Component
         return view('livewire.hello-world');
     }
 
-    public function removeUser($id)
+    public function refreshChildren()
     {
-        $user = User::findOrFail($id);
-        if ($user) {
-            $user->delete();
-            $this->users = User::all();
-        }
+        $this->emit('refreshChildren', 'Jesus');
+        // $this->emit('refreshChildren');
     }
 }
